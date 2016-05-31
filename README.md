@@ -1,5 +1,6 @@
 ##前提
 * 假设是看过"Perl入门"这本书
+
 ![Learning Perl](LearningPerl.PNG)
 
 ##Perl coding tips
@@ -121,7 +122,7 @@ cpan install XML::Rabbit #反应了目录层次
 * [XML::Rabbit](http://search.cpan.org/~robins/XML-Rabbit-0.4.1/lib/XML/Rabbit.pm)
 * [rvp](http://www.burbleland.com/v2html/rvp.html)
 * [Smart::Comments](http://search.cpan.org/~neilb/Smart-Comments-1.06/lib/Smart/Comments.pm)
-* 
+
 
 ##Perl 在我们验证中的应用
 
