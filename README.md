@@ -1,5 +1,6 @@
 ##前提
 * 假设是看过"Perl入门"这本书
+![Learning Perl](LearningPerl.PNG)
 
 ##Perl coding tips
 
@@ -107,4 +108,24 @@ $a = 111_222;
 print "a = ", $a , "\n";
 ```
 
+###安装module
+```shell
+cpan install Template
+cpan install XML::Rabbit #反应了目录层次
+```
+
+###好用的module
+
+* [Template](http://template-toolkit.org/docs/)
+* [XML::LibXML](http://search.cpan.org/~shlomif/XML-LibXML-2.0125/LibXML.pod)
+* [XML::Rabbit](http://search.cpan.org/~robins/XML-Rabbit-0.4.1/lib/XML/Rabbit.pm)
+* [rvp](http://www.burbleland.com/v2html/rvp.html)
+* [Smart::Comments](http://search.cpan.org/~neilb/Smart-Comments-1.06/lib/Smart/Comments.pm)
+* 
+
 ##Perl 在我们验证中的应用
+
+##Perl 参考书目，以及推荐阅读顺序
+![Books](books.PNG)
+
+
