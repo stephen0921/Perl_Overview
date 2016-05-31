@@ -246,7 +246,7 @@ cpan install XML::Rabbit #反应了目录层次
 * [XML::Rabbit](http://search.cpan.org/~robins/XML-Rabbit-0.4.1/lib/XML/Rabbit.pm)
 * [rvp](http://www.burbleland.com/v2html/rvp.html)
 * [Smart::Comments](http://search.cpan.org/~neilb/Smart-Comments-1.06/lib/Smart/Comments.pm)
-
+* [Moose](http://search.cpan.org/~ether/Moose-2.1802/lib/Moose.pm)
 
 ##Perl 在我们验证中的应用
 * 先说其他人的应用
