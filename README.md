@@ -108,6 +108,117 @@ $a = 111_222;
 print "a = ", $a , "\n";
 ```
 
+###调用其他shell命令，同时获得shell命令的STDERR以及STDOUT信息
+
+```perl
+$pid = open $readme, "-|", "$cmd 2>&1";
+while (<$readme>) {
+    push(@out, $_);
+}
+close $readme;
+```
+
+###Perl使用子线程，获得子线程的STDERR信息
+
+```perl
+pipe(READER, WRITER) or die "pipe no good: $!";
+my $pid = fork();
+die "Can no fork: $!" unless defined $pid;
+if($pid) { #parent process
+    close WRITER;
+    while(<READER>) {
+        push @out, $_;
+    }    
+}
+else { #child process
+    close READER;
+    open STDERR, ">&WRITER";
+    $parser = XML::LibXML->new;
+    $parser->validation(1);
+    exit 0;
+}
+```
+
+###多线程
+
+* 因为fork是复制出一个完全一样的进程，所以“go on”会被print 2 次。
+
+```perl
+my $pid = fork();
+if($pid) {
+    #parent
+    print "in parent\n";
+}
+else {
+    #child
+    print "in child\n";
+}
+print "go on\n";
+```
+
+* child process中途退出了，所以 “go on”只被print 1次。
+
+```perl
+my $pid = fork();
+if($pid) {
+    #parent
+    print "in parent\n";
+}
+else {
+    #child
+    print "in child\n";
+    exit;
+}
+print "go on\n";
+```
+
+* child process通过exec，替换掉当前process，所以 “never print this”不会被print。
+
+```perl
+my $pid = fork();
+
+if($pid) {
+    #parent
+    print "in parent\n";
+}
+else {
+    #child
+    print "in child\n";
+    exec("ls");
+    print "never print this.\n";
+}
+print "go on\n";
+```
+
+* eval{}是一种保护性写法。eval的运行结果放在$@里。可以结合alarm handler来完成很多应用。
+
+```perl
+print STDERR "type your password: ";
+my $password =
+eval {
+local $SIG{ALRM} = sub { die "timeout\n" };
+alarm (5); # five second timeout
+return <STDIN>;
+};
+alarm (0);
+print STDERR "you timed out\n" if $@ =~ /timeout/;
+```
+
+* reaper函数，非阻塞式（WNOHANG）的处理所有子进程，$kid等于-1的时候，表示没有需要回收的进程，跳出reaper函数
+
+```perl
+use POSIX 'WNOHANG';
+$SIG{CHLD} = \&reaper;
+sub reaper {
+    while ((my $kid = waitpid(-1,WNOHANG)) > 0) {
+    warn "Reaped child with PID $kid\n";
+    }
+}
+```
+
+###reference
+
+
 ###安装module
 ```shell
 cpan install Template
@@ -121,11 +232,40 @@ cpan install XML::Rabbit #反应了目录层次
 * [XML::Rabbit](http://search.cpan.org/~robins/XML-Rabbit-0.4.1/lib/XML/Rabbit.pm)
 * [rvp](http://www.burbleland.com/v2html/rvp.html)
 * [Smart::Comments](http://search.cpan.org/~neilb/Smart-Comments-1.06/lib/Smart/Comments.pm)
-* 
+
 
 ##Perl 在我们验证中的应用
+* 先说其他人的应用
+  * [easier UVM](http://www.doulos.com/content/events/easierUVM.php)
+
 
 ##Perl 参考书目，以及推荐阅读顺序
 ![Books](books.PNG)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
