@@ -1,13 +1,13 @@
 # Perl_Overview
-##Ç°Ìá
-*¼ÙÉè´ó¼Ò¿´¹ı"PerlÈëÃÅ"Õâ±¾Êé
+##å‰æ
+* å‡è®¾å¤§å®¶çœ‹è¿‡"Perlå…¥é—¨"è¿™æœ¬ä¹¦
 ##Perl coding tips
-###´ò¿ªpipe»òÕß·ÃÎÊÎÄ¼şµÄÊ±ºò£¬×îºÃÊ¹ÓÃdie
+###æ‰“å¼€pipeæˆ–è€…è®¿é—®æ–‡ä»¶çš„æ—¶å€™ï¼Œæœ€å¥½ä½¿ç”¨die
 ```perl
   open FILE, "a_file" or die "Can not open file a_file: $!";
   close FILE;
 ```
-###±Èdie¸üºÃÓÃµÄÊÇcroak
+###æ¯”dieæ›´å¥½ç”¨çš„æ˜¯croak
 ```perl
   a("a_file");
   b("b_file");
@@ -17,4 +17,4 @@
       return 0;
   }
 ```
-##Perl ÔÚÎÒÃÇÑéÖ¤ÖĞµÄÓ¦ÓÃ
+##Perl åœ¨æˆ‘ä»¬éªŒè¯ä¸­çš„åº”ç”¨
