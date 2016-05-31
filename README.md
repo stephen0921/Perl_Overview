@@ -218,7 +218,20 @@ sub reaper {
 ```
 
 ###reference
+* 类似c语言的指针
 
+```perl
+@vars = ();
+$vars_ref = \@vars;
+
+$a_href = {};
+$b_href = { "name" => "b", "action" => "speak", };
+$c_href = {%{$b_href}};
+
+
+$tmp = "name";
+print $c_href->{$tmp}, "\n"; #This is called a symbolic reference
+```
 
 ###安装module
 ```shell
@@ -243,8 +256,9 @@ cpan install XML::Rabbit #反应了目录层次
 ##Perl 参考书目，以及推荐阅读顺序
 ![Books](books.PNG)
 
-
-
+##Perl 参考网站
+[perldoc.perl.org](http://perldoc.perl.org/)
+[cpan](http://search.cpan.org/)
 
 
 
