@@ -1,18 +1,18 @@
-##前提
+## 前提
 * 假设是看过"Perl入门"这本书
 
 ![Learning Perl](LearningPerl.PNG)
 
 ##Perl coding tips
 
-###打开pipe或者访问文件的时候，最好使用die
+### 打开pipe或者访问文件的时候，最好使用die
 
 ```perl
 open FILE, "a_file" or die "Can not open file a_file: $!";
 close FILE;
 ```
 
-###比die更好用的是croak
+### 比die更好用的是croak
 
 ```perl
 use Carp;
@@ -25,7 +25,7 @@ sub a {
 }
 ```
 
-###用dumper来print复杂的数据结构，便于debug
+### 用dumper来print复杂的数据结构，便于debug
 
 ```perl
 use Data::Dumper;
@@ -33,7 +33,7 @@ use Data::Dumper;
 $var = {"name" => "hello", "action" => "speak" };
 print Dumper($var);
 ```
-###用grep和map可以节省很多代码
+### 用grep和map可以节省很多代码
 
 ```perl
 my @foos = grep {!/^#/} @bars;    # weed out comments
@@ -43,7 +43,7 @@ my %hash = map {  lc($_) => 1  } @array
 my @squares = map { $_ * $_ } grep { $_ > 5 } @numbers;
 ```
 
-###使用qq代替双引号，使用q代替单引号，list赋值使用qw
+### 使用qq代替双引号，使用q代替单引号，list赋值使用qw
 
 ```perl
 $a = qq{"}; #{}只是边界作用
@@ -53,7 +53,7 @@ $c = q{'};
 @vars = qw{a b c};
 ```
 
-###使用list的内置函数，不要重新发明轮子
+### 使用list的内置函数，不要重新发明轮子
 
 ```perl
 use List::Util qw(max);
@@ -62,7 +62,7 @@ my @vars = qw(1 2 3);
 my $result = max(@vars);
 ```
 
-###打印多行的信息
+### 打印多行的信息
 
 ```perl
 $a = "hello";
@@ -78,38 +78,38 @@ Dear friend,
 ENDOFA
 ```
 
-###只想做语法检查
+### 只想做语法检查
 
 ```shell
 perl -cwT test.pl
 ```
 
-###查看Perl默认的include路径
+### 查看Perl默认的include路径
 
 ```shell
-perl -e "print join(\"\n\", @INC)"
+perl -e "print join(qq{\n}, @INC)"
 ```
 
-###使用自己的local路径下的库
+### 使用自己的local路径下的库
 
 ```perl
 use lib '/home/xx/eda_scripts/pm';
 ```
-###查看perl的pod格式的说明
+### 查看perl的pod格式的说明
 
 ```shell
 perldoc rvp.pm
 perldoc perldoc
 ```
 
-###Perl5.8之后的版本，可以在数据中间加下划线
+### Perl5.8之后的版本，可以在数据中间加下划线
 
 ```perl
 $a = 111_222;
 print "a = ", $a , "\n";
 ```
 
-###调用其他shell命令，同时获得shell命令的STDERR以及STDOUT信息
+### 调用其他shell命令，同时获得shell命令的STDERR以及STDOUT信息
 
 ```perl
 $pid = open $readme, "-|", "$cmd 2>&1";
@@ -119,7 +119,7 @@ while (<$readme>) {
 close $readme;
 ```
 
-###Perl使用子线程，获得子线程的STDERR信息
+### Perl使用子线程，获得子线程的STDERR信息
 
 ```perl
 pipe(READER, WRITER) or die "pipe no good: $!";
@@ -140,7 +140,7 @@ else { #child process
 }
 ```
 
-###多线程
+### 多线程
 
 * 因为fork是复制出一个完全一样的进程，所以“go on”会被print 2 次。
 
@@ -217,7 +217,7 @@ sub reaper {
 }
 ```
 
-###reference
+### reference
 * 类似c语言的指针
 
 ```perl
@@ -233,13 +233,13 @@ $tmp = "name";
 print $c_href->{$tmp}, "\n"; #This is called a symbolic reference
 ```
 
-###安装module
+### 安装module
 ```shell
 cpan install Template
 cpan install XML::Rabbit #反应了目录层次
 ```
 
-###好用的module
+### 好用的module
 
 * [Template](http://template-toolkit.org/docs/)
 * [XML::LibXML](http://search.cpan.org/~shlomif/XML-LibXML-2.0125/LibXML.pod)
@@ -248,15 +248,15 @@ cpan install XML::Rabbit #反应了目录层次
 * [Smart::Comments](http://search.cpan.org/~neilb/Smart-Comments-1.06/lib/Smart/Comments.pm)
 * [Moose](http://search.cpan.org/~ether/Moose-2.1802/lib/Moose.pm)
 
-##Perl 在我们验证中的应用
+## Perl 在我们验证中的应用
 * 先说其他人的应用
   * [easier UVM](http://www.doulos.com/content/events/easierUVM.php)
 
 
-##Perl 参考书目，以及推荐阅读顺序
+## Perl 参考书目，以及推荐阅读顺序
 ![Books](books.PNG)
 
-##Perl 参考网站
+## Perl 参考网站
 
 [perldoc.perl.org](http://perldoc.perl.org/)
 
