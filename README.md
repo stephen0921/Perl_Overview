@@ -87,7 +87,7 @@ perl -cwT test.pl
 ### 查看Perl默认的include路径
 
 ```shell
-perl -e "print join(qq{\n}, @INC)"
+perl -e "print join(qq{\n}, @INC);"
 ```
 
 ### 使用自己的local路径下的库
